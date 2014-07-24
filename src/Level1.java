@@ -64,6 +64,8 @@ public class Level1 {
             System.out.println("You can't just open the walls...\n");
         } else if (object.equalsIgnoreCase("door") && !door) {
             System.out.println("The door is locked.\n");
+        } else if (object.equalsIgnoreCase("door") && door) {
+            openDoor();
         } else if (object.equalsIgnoreCase("table")) {
             System.out.println("You can't just open the table...\n");
         } else {
@@ -112,6 +114,8 @@ public class Level1 {
             System.out.println("A table has many uses. But none that could help you here.\n");
         } else if (object.equalsIgnoreCase("door") && !door) {
             System.out.println("The door is locked.\n");
+        } else if (object.equalsIgnoreCase("door") && door) {
+            openDoor();
         } else if (object.equalsIgnoreCase("keypad")) {
             System.out.println("You are standing in front of the keypad. Enter a combination:\n");
             String kommando = sc.nextLine();
@@ -137,12 +141,24 @@ public class Level1 {
         }
     }
 
+    // Hjelpemetode til open() og use(). Sjekker om brukeren har klart nivået, og går videre
     private void openDoor() {
         System.out.println("The door glides open, and you see a spiraling stairway going downwards. Flickering torches on the stone \n" +
                 "wall illuminates the way. Do you wish to continue?\n");
-        String kommando = sc.nextLine();
-        if (kommando.equalsIgnoreCase("yes")) {
+        boolean sjekk = false;
 
+        while (!sjekk) {
+            String kommando = sc.nextLine();
+            if (kommando.equalsIgnoreCase("yes")) {
+                System.out.println("You descend...");
+                completed = true;
+                sjekk = true;
+            } else if (kommando.equalsIgnoreCase("no")) {
+                System.out.println("You find you are not yet ready to descend, and turn your back to the stairway.\n");
+                sjekk = true;
+            } else {
+                System.out.println("Please type either 'yes' or 'no'.\n");
+            }
         }
     }
 

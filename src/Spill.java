@@ -15,9 +15,9 @@ public class Spill {
     public void startL1() {
         System.out.println("Welcome to ADVENTURE!\n---------------------\nFor a list of helpful commands, type 'help' at any time.\n\n\n" +
                 "You are standing in a room. You have no recollection of how you got here, or where you are.\n");
-        boolean rom = true;
 
-        while (rom) {
+
+        while (!l1.isCompleted()) {
             String kommando = sc.nextLine();
             String[] tab = kommando.split(" ");
 
