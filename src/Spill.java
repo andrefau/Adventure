@@ -27,7 +27,10 @@ public class Spill {
                 l1.look();
             } else if (tab.length >= 2 && tab[1].equalsIgnoreCase("at")) {      // Look at kommandoen
                 l1.lookAt(tab[2]);
-            } else {
+            } else if (tab.length >= 2 && tab[0].equalsIgnoreCase("open")) {    // Open kommandoen
+                l1.open(tab[1]);
+            }
+            else {
                 System.out.println("That made no sense, try again.\n");
             }
         }
