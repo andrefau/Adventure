@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Created by anfauske on 22.07.14.
@@ -7,8 +8,15 @@ public class Level1 {
 
     private ArrayList<String> inventory = new ArrayList<String>();
     private boolean note = true;
+    private boolean door = false;
+    private boolean completed = false;
+    private Scanner sc = new Scanner(System.in);
 
     public Level1() {
+    }
+
+    public boolean isCompleted() {
+        return completed;
     }
 
     public void help() {
@@ -54,7 +62,7 @@ public class Level1 {
             System.out.println("You can't just open the floor...\n");
         } else if (object.equalsIgnoreCase("wall") || object.equalsIgnoreCase("walls")) {
             System.out.println("You can't just open the walls...\n");
-        } else if (object.equalsIgnoreCase("door")) {
+        } else if (object.equalsIgnoreCase("door") && !door) {
             System.out.println("The door is locked.\n");
         } else if (object.equalsIgnoreCase("table")) {
             System.out.println("You can't just open the table...\n");
@@ -84,4 +92,58 @@ public class Level1 {
             System.out.println("You want to pick up what?\n");
         }
     }
+
+    public void printInv() {
+        if (inventory.size() == 0) {
+            System.out.println("Your inventory is empty.\n");
+        } else {
+            for (String i : inventory) {
+                System.out.println("- " +i);
+            }
+        }
+    }
+
+    public void use(String object) {
+        if (object.equalsIgnoreCase("floor")) {
+            System.out.println("You are already using the floor, by standing on it.\n");
+        } else if (object.equalsIgnoreCase("wall") || object.equalsIgnoreCase("walls")) {
+            System.out.println("How do you wish to use the walls?\n");
+        } else if (object.equalsIgnoreCase("table")) {
+            System.out.println("A table has many uses. But none that could help you here.\n");
+        } else if (object.equalsIgnoreCase("door") && !door) {
+            System.out.println("The door is locked.\n");
+        } else if (object.equalsIgnoreCase("keypad")) {
+            System.out.println("You are standing in front of the keypad. Enter a combination:\n");
+            String kommando = sc.nextLine();
+            keypad(kommando);
+        } else {
+            System.out.println("You want to use what?\n");
+        }
+    }
+
+    public void useWith(String item, String object) {
+        System.out.println("That combination does not work.\n");
+    }
+
+    // Hjelpemetode til use(). Sjekker om brukeren tastet inn rett svar på keypaden.
+    private boolean keypad(String svar) {
+        if (svar.equalsIgnoreCase("42")) {
+            System.out.println("You hear a soft 'click' from the door.\n");
+            door = true;
+            return true;
+        } else {
+            System.out.println("You enter " + svar + ", but nothing seems to happen.\n");
+            return false;
+        }
+    }
+
+    private void openDoor() {
+        System.out.println("The door glides open, and you see a spiraling stairway going downwards. Flickering torches on the stone \n" +
+                "wall illuminates the way. Do you wish to continue?\n");
+        String kommando = sc.nextLine();
+        if (kommando.equalsIgnoreCase("yes")) {
+
+        }
+    }
+
 }

@@ -31,6 +31,12 @@ public class Spill {
                 l1.open(tab[1]);
             } else if (tab.length >= 3 && tab[0].equalsIgnoreCase("pick")) {    // Pick up kommandoen
                 l1.pickUp(tab[2]);
+            } else if (kommando.equalsIgnoreCase("inventory")) {                // Inventory kommandoen
+                l1.printInv();
+            } else if (tab.length == 2 && tab[0].equalsIgnoreCase("use")) {     // Use kommandoen
+                l1.use(tab[1]);
+            } else if (tab.length >= 4 && tab[2].equalsIgnoreCase("with")) {    // Use with kommandoen
+                l1.useWith(tab[1], tab[3]);
             }
             else {
                 System.out.println("That made no sense, try again.\n");
