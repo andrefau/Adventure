@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Level1 {
 
     private ArrayList<String> inventory = new ArrayList<String>();
+    private boolean note = true;
 
     public Level1() {
     }
@@ -37,8 +38,10 @@ public class Level1 {
                     "On the wall beside the door, there's a keypad with the numbers 0-9.\n");
         } else if (object.equalsIgnoreCase("keypad")) {
             System.out.println("It is a keypad with the numbers 0-9.\n");
-        } else if (object.equalsIgnoreCase("table")) {
+        } else if (object.equalsIgnoreCase("table") && note) {
             System.out.println("You see a small wooden table with four legs. There's a note on it.\n");
+        } else if (object.equalsIgnoreCase("table") && !note) {
+            System.out.println("You see a small wooden table with four legs.\n");
         } else if (object.equalsIgnoreCase("note")) {
             System.out.println("Printed in large bold letters, it simply says 'What is the meaning of life?'.\n");
         } else {
@@ -48,15 +51,37 @@ public class Level1 {
 
     public void open(String object) {
         if (object.equalsIgnoreCase("floor")) {
-            System.out.println("You can't just open the floor..\n");
+            System.out.println("You can't just open the floor...\n");
         } else if (object.equalsIgnoreCase("wall") || object.equalsIgnoreCase("walls")) {
-            System.out.println("You can't just open the walls..\n");
+            System.out.println("You can't just open the walls...\n");
         } else if (object.equalsIgnoreCase("door")) {
             System.out.println("The door is locked.\n");
         } else if (object.equalsIgnoreCase("table")) {
-            System.out.println("You can't just open the table..\n");
+            System.out.println("You can't just open the table...\n");
         } else {
             System.out.println("You want to open what?\n");
+        }
+    }
+
+    public void pickUp(String object) {
+        if (object.equalsIgnoreCase("floor")) {
+            System.out.println("You can't pick up the floor...\n");
+        } else if (object.equalsIgnoreCase("wall") || object.equalsIgnoreCase("walls")) {
+            System.out.println("You can't pick up the walls...\n");
+        } else if (object.equalsIgnoreCase("table")) {
+            System.out.println("You try to pick up the table, but it won't budge.\n");
+        } else if (object.equalsIgnoreCase("door")) {
+            System.out.println("You can't pick up the door...\n");
+        } else if (object.equalsIgnoreCase("keypad")) {
+            System.out.println("You try to pry loose the keypad, but it's stuck.\n");
+        } else if (object.equalsIgnoreCase("note") && note) {
+            System.out.println("You pick up the note and add it to your inventory.\n");
+            inventory.add("Note");
+            note = false;
+        } else if (object.equalsIgnoreCase("note") && !note) {
+            System.out.println("You have already picked up the note!\n");
+        } else {
+            System.out.println("You want to pick up what?\n");
         }
     }
 }
