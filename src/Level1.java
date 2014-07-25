@@ -6,7 +6,7 @@ import java.util.Scanner;
  */
 public class Level1 {
 
-    private ArrayList<String> inventory = new ArrayList<String>();
+    public ArrayList<String> inventory = new ArrayList<String>();
     private boolean note = true;
     private boolean door = false;
     private boolean completed = false;
@@ -160,7 +160,7 @@ public class Level1 {
         while (!sjekk) {
             String kommando = sc.nextLine();
             if (kommando.equalsIgnoreCase("yes")) {
-                System.out.print("You descend the narrow stairway");
+                System.out.print("You descend the narrow stairway...\n");
                 completed = true;
                 sjekk = true;
             } else if (kommando.equalsIgnoreCase("no")) {

@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  * Created by anfauske on 24.07.14.
  */
@@ -5,6 +8,7 @@ public class Level2 extends Level1 {
 
     private boolean completed = false;
     private boolean door = false;
+    private Scanner sc = new Scanner(System.in);
 
     public Level2() {
     }
@@ -44,11 +48,77 @@ public class Level2 extends Level1 {
         } else if (object.equalsIgnoreCase("door") && !door) {
             System.out.println("The door is locked.\n");
         } else if (object.equalsIgnoreCase("door") && door) {
-            // Sett inn kode for åpen dør her.
+            openDoor();
         } else if (object.equalsIgnoreCase("telephone") || object.equalsIgnoreCase("phone")) {
             System.out.println("You try to break open the telephone, but to no avail. You are left feeling useless and depressed.\n");
         } else {
             System.out.println("You want to open what?\n");
+        }
+    }
+
+    public void pickUp(String object) {
+        if (object.equalsIgnoreCase("floor")) {
+            System.out.println("You can't pick up the floor...\n");
+        } else if (object.equalsIgnoreCase("wall") || object.equalsIgnoreCase("walls")) {
+            System.out.println("You can't pick up the walls...\n");
+        } else if (object.equalsIgnoreCase("door")) {
+            System.out.println("You can't pick up the door...\n");
+        } else if (object.equalsIgnoreCase("telephone") || object.equalsIgnoreCase("phone")) {
+            System.out.println("You pick up the telephone and hold it against your ear. You think you can hear a soft humming noise coming \n" +
+                    "from the other end, but you are not sure. What do you say?\n");
+            phone();
+        } else {
+            System.out.println("You want to pick up what?\n");
+        }
+    }
+
+    public void use(String object) {
+        if (object.equalsIgnoreCase("floor")) {
+            System.out.println("You are already using the floor, by standing on it.\n");
+        } else if (object.equalsIgnoreCase("wall") || object.equalsIgnoreCase("walls")) {
+            System.out.println("How do you wish to use the walls?\n");
+        } else if (object.equalsIgnoreCase("door") && !door) {
+            System.out.println("The door is locked.\n");
+        } else if (object.equalsIgnoreCase("door") && door) {
+            openDoor();
+        } else if (object.equalsIgnoreCase("telephone") || object.equalsIgnoreCase("phone")) {
+            System.out.println("You pick up the telephone and hold it against your ear. You think you can hear a soft humming noise coming \n" +
+                    "from the other end, but you are not sure. What do you say?\n");
+            phone();
+        } else {
+            System.out.println("You want to use what?\n");
+        }
+    }
+
+    // Hjelpemetode til pickUp() og use(). Sjekker hva brukeren sier i telefonen.
+    private void phone() {
+        String kommando = sc.nextLine();
+        if (kommando.equalsIgnoreCase("friend")) {
+            System.out.println("You hear a soft 'click' from the door.\n");
+            door = true;
+        } else {
+            System.out.println("You say " + kommando + ", but nothing seems to happen. Maybe somebody heard?\n");
+        }
+    }
+
+    // Hjelpemetode til open() og use(). Sjekker om brukeren har klart nivået, og går videre
+    private void openDoor() {
+        System.out.println("The door glides open, and you see a spiraling stairway going downwards. Flickering torches on the stone \n" +
+                "wall illuminates the way. Do you wish to continue?\n");
+        boolean sjekk = false;
+
+        while (!sjekk) {
+            String kommando = sc.nextLine();
+            if (kommando.equalsIgnoreCase("yes")) {
+                System.out.print("You descend the narrow stairway...\n");
+                completed = true;
+                sjekk = true;
+            } else if (kommando.equalsIgnoreCase("no")) {
+                System.out.println("You find you are not yet ready to descend, and turn your back to the stairway, closing the door behind you.\n");
+                sjekk = true;
+            } else {
+                System.out.println("Please type either 'yes' or 'no'.\n");
+            }
         }
     }
 }

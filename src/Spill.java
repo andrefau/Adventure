@@ -38,15 +38,14 @@ public class Spill {
                 l1.use(tab[1]);
             } else if (tab.length >= 4 && tab[2].equalsIgnoreCase("with")) {    // Use with kommandoen
                 l1.useWith(tab[1], tab[3]);
-            }
-            else {
+            } else {
                 System.out.println("That made no sense, try again.\n");
             }
         }
     }
 
     public void startL2() {
-        System.out.print(", and find yourself in front of another door. You push it open tentatively and enter the room. The door slams \n" +
+        System.out.print("...and find yourself in front of another door. You push it open tentatively and enter the room. The door slams \n" +
                 "shut behind you and, turning around, you realise that the walls have converged where the door used to be. You cannot go back.\n\n");
 
         while (!l2.isCompleted()) {
@@ -61,6 +60,16 @@ public class Spill {
                 l2.lookAt(tab[2]);
             } else if (tab.length >= 2 && tab[0].equalsIgnoreCase("open")) {    // Open kommandoen
                 l2.open(tab[1]);
+            } else if (tab.length >= 3 && tab[0].equalsIgnoreCase("pick")) {    // Pick up kommandoen
+                l2.pickUp(tab[2]);
+            } else if (kommando.equalsIgnoreCase("inventory")) {                // Inventory kommandoen
+                l2.printInv();
+            } else if (tab.length == 2 && tab[0].equalsIgnoreCase("use")) {     // Use kommandoen
+                l2.use(tab[1]);
+            } else if (tab.length >= 4 && tab[2].equalsIgnoreCase("with")) {    // Use with kommandoen
+                l2.useWith(tab[1], tab[3]);
+            } else {
+                System.out.println("That made no sense, try again.\n");
             }
         }
     }
