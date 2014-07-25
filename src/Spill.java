@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Spill {
 
     private Level1 l1 = new Level1();
+    private Level2 l2 = new Level2();
     private Scanner sc = new Scanner(System.in);
 
     public Spill() {
@@ -43,5 +44,21 @@ public class Spill {
             }
         }
         sc.close();
+    }
+
+    public void startL2() {
+        System.out.print(", and find yourself in front of another door. You push it open tentatively and enter the room. The door slams \n" +
+                "shut behind you and, turning around, you realise that the walls have converged where the door used to be. You cannot go back.\n");
+
+        while (!l2.isCompleted()) {
+            String kommando = sc.nextLine();
+            String[] tab = kommando.split(" ");
+
+            if (kommando.equalsIgnoreCase("help")) {                            // Help kommandoen
+                l2.help();
+            } else if (kommando.equalsIgnoreCase("look")) {                     // Look kommandoen
+                l2.look();
+            }
+        }
     }
 }

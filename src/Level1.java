@@ -26,14 +26,20 @@ public class Level1 {
                 "'Open <object>'              - Opens an object.\n" +
                 "'Pick up <object>'           - Picks up an object and places it in your inventory.\n" +
                 "'Inventory'                  - Shows a list of your current inventory.\n" +
-                "'Use <object>'               - Uses an item in the world.\n" +
+                "'Use <item>'                 - Uses an item in the world.\n" +
                 "'Use <item> with <object>'   - Uses an item from the world, or your inventory, with an object in the world.\n");
     }
 
     public void look() {
-        System.out.println("You are standing in a small square room, with a stone floor, wooden walls, a steel door and no windows.\n" +
-                "A dim light comes from beneath the door, enough to slightly illuminate the small room. In the middle of the room " +
-                "there's a table with a note on it.\n");
+        if (note) {
+            System.out.println("You are standing in a small square room, with a stone floor, wooden walls, a steel door and no windows.\n" +
+                    "A dim light comes from beneath the door, enough to slightly illuminate the small room. In the middle of the room " +
+                    "there is a table with a note on it.\n");
+        } else {
+            System.out.println("You are standing in a small square room, with a stone floor, wooden walls, a steel door and no windows.\n" +
+                    "A dim light comes from beneath the door, enough to slightly illuminate the small room. In the middle of the room " +
+                    "there is a table.\n");
+        }
     }
 
     public void lookAt(String object) {
@@ -68,7 +74,10 @@ public class Level1 {
             openDoor();
         } else if (object.equalsIgnoreCase("table")) {
             System.out.println("You can't just open the table...\n");
-        } else {
+        } else if (object.equalsIgnoreCase("keypad")) {
+            System.out.println("You try to pry open the keypad, but it is stuck.\n");
+        }
+        else {
             System.out.println("You want to open what?\n");
         }
     }
@@ -136,7 +145,7 @@ public class Level1 {
             door = true;
             return true;
         } else {
-            System.out.println("You enter " + svar + ", but nothing seems to happen.\n");
+            System.out.println("You enter " + svar + ", but nothing seems to happen. Feeling hopeless, you back away from the keypad.\n");
             return false;
         }
     }
@@ -150,11 +159,11 @@ public class Level1 {
         while (!sjekk) {
             String kommando = sc.nextLine();
             if (kommando.equalsIgnoreCase("yes")) {
-                System.out.println("You descend...");
+                System.out.print("You descend the narrow stairway");
                 completed = true;
                 sjekk = true;
             } else if (kommando.equalsIgnoreCase("no")) {
-                System.out.println("You find you are not yet ready to descend, and turn your back to the stairway.\n");
+                System.out.println("You find you are not yet ready to descend, and turn your back to the stairway, closing the door behind you.\n");
                 sjekk = true;
             } else {
                 System.out.println("Please type either 'yes' or 'no'.\n");
