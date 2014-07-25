@@ -26,7 +26,7 @@ public class Spill {
                 l1.help();
             } else if (kommando.equalsIgnoreCase("look")) {                     // Look kommandoen
                 l1.look();
-            } else if (tab.length >= 2 && tab[1].equalsIgnoreCase("at")) {      // Look at kommandoen
+            } else if (tab.length >= 3 && tab[1].equalsIgnoreCase("at")) {      // Look at kommandoen
                 l1.lookAt(tab[2]);
             } else if (tab.length >= 2 && tab[0].equalsIgnoreCase("open")) {    // Open kommandoen
                 l1.open(tab[1]);
@@ -43,12 +43,11 @@ public class Spill {
                 System.out.println("That made no sense, try again.\n");
             }
         }
-        sc.close();
     }
 
     public void startL2() {
         System.out.print(", and find yourself in front of another door. You push it open tentatively and enter the room. The door slams \n" +
-                "shut behind you and, turning around, you realise that the walls have converged where the door used to be. You cannot go back.\n");
+                "shut behind you and, turning around, you realise that the walls have converged where the door used to be. You cannot go back.\n\n");
 
         while (!l2.isCompleted()) {
             String kommando = sc.nextLine();
@@ -58,6 +57,10 @@ public class Spill {
                 l2.help();
             } else if (kommando.equalsIgnoreCase("look")) {                     // Look kommandoen
                 l2.look();
+            } else if (tab.length >= 3 && tab[1].equalsIgnoreCase("at")) {      // Look at kommandoen
+                l2.lookAt(tab[2]);
+            } else if (tab.length >= 2 && tab[0].equalsIgnoreCase("open")) {    // Open kommandoen
+                l2.open(tab[1]);
             }
         }
     }

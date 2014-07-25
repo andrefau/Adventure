@@ -58,6 +58,8 @@ public class Level1 {
             System.out.println("You see a small wooden table with four legs.\n");
         } else if (object.equalsIgnoreCase("note")) {
             System.out.println("Printed in large bold letters, it simply says 'What is the meaning of life?'.\n");
+        } else if (object.equalsIgnoreCase("light")) {
+            System.out.println("The soft light is coming from beneath the door.\n");
         } else {
             System.out.println("You want to look at what?\n");
         }
@@ -76,8 +78,7 @@ public class Level1 {
             System.out.println("You can't just open the table...\n");
         } else if (object.equalsIgnoreCase("keypad")) {
             System.out.println("You try to pry open the keypad, but it is stuck.\n");
-        }
-        else {
+        } else {
             System.out.println("You want to open what?\n");
         }
     }
