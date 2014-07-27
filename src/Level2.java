@@ -23,7 +23,7 @@ public class Level2 extends Level1 {
                 "A dim light comes from beneath the door, enough to slightly illuminate the small room.\n");
     }
 
-    public void lookAt(String object) {
+    public void lookAt(String object, ArrayList<String> inv) {
         if (object.equalsIgnoreCase("floor")) {
             System.out.println("It is a cold and hard stone floor.\n");
         } else if (object.equalsIgnoreCase("wall") || object.equalsIgnoreCase("walls")) {
@@ -35,6 +35,8 @@ public class Level2 extends Level1 {
             System.out.println("The soft light is coming from beneath the door.\n");
         } else if (object.equalsIgnoreCase("telephone") || object.equalsIgnoreCase("phone")) {
             System.out.println("The phone is hanging by a hook on the wall. Its cord disappears between the stones, and it has no dial.\n");
+        } else if (checkInv(object, inv)) {
+            lookAtInv(object);
         } else {
             System.out.println("You want to look at what?\n");
         }
@@ -48,7 +50,9 @@ public class Level2 extends Level1 {
         } else if (object.equalsIgnoreCase("door") && !door) {
             System.out.println("The door is locked.\n");
         } else if (object.equalsIgnoreCase("door") && door) {
-            openDoor();
+            if (openDoor()) {
+                completed = true;
+            }
         } else if (object.equalsIgnoreCase("telephone") || object.equalsIgnoreCase("phone")) {
             System.out.println("You try to break open the telephone, but to no avail. You are left feeling useless and depressed.\n");
         } else {
@@ -56,7 +60,7 @@ public class Level2 extends Level1 {
         }
     }
 
-    public void pickUp(String object) {
+    public void pickUp(String object, ArrayList<String> inv) {
         if (object.equalsIgnoreCase("floor")) {
             System.out.println("You can't pick up the floor...\n");
         } else if (object.equalsIgnoreCase("wall") || object.equalsIgnoreCase("walls")) {
@@ -80,7 +84,9 @@ public class Level2 extends Level1 {
         } else if (object.equalsIgnoreCase("door") && !door) {
             System.out.println("The door is locked.\n");
         } else if (object.equalsIgnoreCase("door") && door) {
-            openDoor();
+            if (openDoor()) {
+                completed = true;
+            }
         } else if (object.equalsIgnoreCase("telephone") || object.equalsIgnoreCase("phone")) {
             System.out.println("You pick up the telephone and hold it against your ear. You think you can hear a soft humming noise coming \n" +
                     "from the other end, but you are not sure. What do you say?\n");
@@ -98,27 +104,6 @@ public class Level2 extends Level1 {
             door = true;
         } else {
             System.out.println("You say " + kommando + ", but nothing seems to happen. Maybe somebody heard?\n");
-        }
-    }
-
-    // Hjelpemetode til open() og use(). Sjekker om brukeren har klart nivået, og går videre
-    private void openDoor() {
-        System.out.println("The door glides open, and you see a spiraling stairway going downwards. Flickering torches on the stone \n" +
-                "wall illuminates the way. Do you wish to continue?\n");
-        boolean sjekk = false;
-
-        while (!sjekk) {
-            String kommando = sc.nextLine();
-            if (kommando.equalsIgnoreCase("yes")) {
-                System.out.print("You descend the narrow stairway...\n");
-                completed = true;
-                sjekk = true;
-            } else if (kommando.equalsIgnoreCase("no")) {
-                System.out.println("You find you are not yet ready to descend, and turn your back to the stairway, closing the door behind you.\n");
-                sjekk = true;
-            } else {
-                System.out.println("Please type either 'yes' or 'no'.\n");
-            }
         }
     }
 }

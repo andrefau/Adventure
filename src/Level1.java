@@ -6,7 +6,7 @@ import java.util.Scanner;
  */
 public class Level1 {
 
-    public ArrayList<String> inventory = new ArrayList<String>();
+    //public ArrayList<String> inventory = new ArrayList<String>();
     private boolean note = true;
     private boolean door = false;
     private boolean completed = false;
@@ -42,7 +42,7 @@ public class Level1 {
         }
     }
 
-    public void lookAt(String object) {
+    public void lookAt(String object, ArrayList<String> inv) {
         if (object.equalsIgnoreCase("floor")) {
             System.out.println("It is a cold and hard stone floor.\n");
         } else if (object.equalsIgnoreCase("walls") || object.equalsIgnoreCase("wall")) {
@@ -73,7 +73,9 @@ public class Level1 {
         } else if (object.equalsIgnoreCase("door") && !door) {
             System.out.println("The door is locked.\n");
         } else if (object.equalsIgnoreCase("door") && door) {
-            openDoor();
+            if (openDoor()) {
+                completed = true;
+            }
         } else if (object.equalsIgnoreCase("table")) {
             System.out.println("You can't just open the table...\n");
         } else if (object.equalsIgnoreCase("keypad")) {
@@ -83,7 +85,7 @@ public class Level1 {
         }
     }
 
-    public void pickUp(String object) {
+    public void pickUp(String object, ArrayList<String> inv) {
         if (object.equalsIgnoreCase("floor")) {
             System.out.println("You can't pick up the floor...\n");
         } else if (object.equalsIgnoreCase("wall") || object.equalsIgnoreCase("walls")) {
@@ -96,7 +98,7 @@ public class Level1 {
             System.out.println("You try to pry loose the keypad, but it's stuck.\n");
         } else if (object.equalsIgnoreCase("note") && note) {
             System.out.println("You pick up the note and add it to your inventory.\n");
-            inventory.add("Note");
+            inv.add("Note");
             note = false;
         } else if (object.equalsIgnoreCase("note") && !note) {
             System.out.println("You have already picked up the note!\n");
@@ -105,11 +107,11 @@ public class Level1 {
         }
     }
 
-    public void printInv() {
-        if (inventory.size() == 0) {
+    public void printInv(ArrayList<String> inv) {
+        if (inv.size() == 0) {
             System.out.println("Your inventory is empty.\n");
         } else {
-            for (String i : inventory) {
+            for (String i : inv) {
                 System.out.println("- " +i);
             }
         }
@@ -125,7 +127,9 @@ public class Level1 {
         } else if (object.equalsIgnoreCase("door") && !door) {
             System.out.println("The door is locked.\n");
         } else if (object.equalsIgnoreCase("door") && door) {
-            openDoor();
+            if (openDoor()) {
+                completed = true;
+            }
         } else if (object.equalsIgnoreCase("keypad")) {
             System.out.println("You are standing in front of the keypad. Enter a combination:\n");
             String kommando = sc.nextLine();
@@ -152,7 +156,7 @@ public class Level1 {
     }
 
     // Hjelpemetode til open() og use(). Sjekker om brukeren har klart nivået, og går videre
-    private void openDoor() {
+    public boolean openDoor() {
         System.out.println("The door glides open, and you see a spiraling stairway going downwards. Flickering torches on the stone \n" +
                 "wall illuminates the way. Do you wish to continue?\n");
         boolean sjekk = false;
@@ -161,14 +165,32 @@ public class Level1 {
             String kommando = sc.nextLine();
             if (kommando.equalsIgnoreCase("yes")) {
                 System.out.print("You descend the narrow stairway...\n");
-                completed = true;
                 sjekk = true;
+                return true;
             } else if (kommando.equalsIgnoreCase("no")) {
                 System.out.println("You find you are not yet ready to descend, and turn your back to the stairway, closing the door behind you.\n");
                 sjekk = true;
             } else {
                 System.out.println("Please type either 'yes' or 'no'.\n");
             }
+        }
+        return false;
+    }
+
+    // Hjelpemetode for å sjekke om spilleren har et objekt i inventoryet
+    public boolean checkInv(String object, ArrayList<String> inv) {
+        for (String i: inv) {
+            if (i.equalsIgnoreCase(object)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Hjelpemetode til lookAt() hvis brukeren ønsker å se på noe i inventoryet
+    public void lookAtInv(String object) {
+        if (object.equalsIgnoreCase("note")) {
+            System.out.println("Printed in large bold letters, it simply says 'What is the meaning of life?'.\n");
         }
     }
 
