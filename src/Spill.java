@@ -10,6 +10,7 @@ public class Spill {
     private ArrayList<String> inventory = new ArrayList<String>();
     private Level1 l1;
     private Level2 l2;
+    private Level3 l3;
 
     public Spill() {
 
@@ -74,6 +75,22 @@ public class Spill {
                 l2.useWith(tab[1], tab[3]);
             } else {
                 System.out.println("That made no sense, try again.\n");
+            }
+        }
+    }
+
+    public void StartL3() {
+        l3 = new Level3();
+        System.out.println("...and find yourself in complete and utter darkness. Feeling a surge of panic you frantically search for the way back, \n" +
+                "while running your fingers alongside the wall. However you start to realise that there is no way back, you have been going in circles, \n" +
+                "trapped in another room, this time with no light.\n");
+
+        while (!l3.isCompleted()) {
+            String kommando = sc.nextLine();
+            String[] tab = kommando.split(" ");
+
+            if (kommando.equalsIgnoreCase("help")) {                            // Help kommandoen
+                l3.help();
             }
         }
     }

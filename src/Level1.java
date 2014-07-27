@@ -6,11 +6,10 @@ import java.util.Scanner;
  */
 public class Level1 {
 
-    //public ArrayList<String> inventory = new ArrayList<String>();
     private boolean note = true;
     private boolean door = false;
     private boolean completed = false;
-    private Scanner sc = new Scanner(System.in);
+    private Scanner sc;
 
     public Level1() {
     }
@@ -118,6 +117,7 @@ public class Level1 {
     }
 
     public void use(String object) {
+        sc = new Scanner(System.in);
         if (object.equalsIgnoreCase("floor")) {
             System.out.println("You are already using the floor, by standing on it.\n");
         } else if (object.equalsIgnoreCase("wall") || object.equalsIgnoreCase("walls")) {
@@ -157,6 +157,7 @@ public class Level1 {
 
     // Hjelpemetode til open() og use(). Sjekker om brukeren har klart nivået, og går videre
     public boolean openDoor() {
+        sc = new Scanner(System.in);
         System.out.println("The door glides open, and you see a spiraling stairway going downwards. Flickering torches on the stone \n" +
                 "wall illuminates the way. Do you wish to continue?\n");
         boolean sjekk = false;

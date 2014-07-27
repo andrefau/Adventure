@@ -6,5 +6,6 @@ public class Klient {
         Spill s = new Spill();
         s.startL1();
         s.startL2();
+        s.StartL3();
     }
 }
