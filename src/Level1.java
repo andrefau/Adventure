@@ -192,6 +192,8 @@ public class Level1 {
     public void lookAtInv(String object) {
         if (object.equalsIgnoreCase("note")) {
             System.out.println("Printed in large bold letters, it simply says 'What is the meaning of life?'.\n");
+        } else if (object.equalsIgnoreCase("key")) {
+            System.out.println("It is a small golden key, with intricate carvings alongside its edge.\n");
         }
     }
 

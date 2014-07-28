@@ -82,7 +82,7 @@ public class Spill {
     public void StartL3() {
         l3 = new Level3();
         System.out.println("...and find yourself in complete and utter darkness. Feeling a surge of panic you frantically search for the way back, \n" +
-                "while running your fingers alongside the wall. However you start to realise that there is no way back, you have been going in circles, \n" +
+                "while running your fingers alongside the wall. However you soon start to realise that there is no way back, you have been going in circles, \n" +
                 "trapped in another room, this time with no light.\n");
 
         while (!l3.isCompleted()) {
@@ -91,6 +91,15 @@ public class Spill {
 
             if (kommando.equalsIgnoreCase("help")) {                            // Help kommandoen
                 l3.help();
+            } else if (kommando.equalsIgnoreCase("look")) {                     // Look kommandoen
+                l3.look();
+            } else if (tab.length >= 3 && tab[1].equalsIgnoreCase("at")) {      // Look at kommandoen
+                l3.lookAt(tab[2], inventory);
+            } else if (tab.length >= 2 && tab[0].equalsIgnoreCase("open")) {    // Open kommandoen
+                l3.open(tab[1]);
+            }
+            else {
+                System.out.println("That made no sense, try again.\n");
             }
         }
     }
