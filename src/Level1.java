@@ -166,7 +166,6 @@ public class Level1 {
             String kommando = sc.nextLine();
             if (kommando.equalsIgnoreCase("yes")) {
                 System.out.print("You descend the narrow stairway...\n");
-                sjekk = true;
                 return true;
             } else if (kommando.equalsIgnoreCase("no")) {
                 System.out.println("You find you are not yet ready to descend, and turn your back to the stairway, closing the door behind you.\n");

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Created by anfauske on 27.07.14.
@@ -10,7 +9,6 @@ public class Level3 extends Level1{
     private boolean key = false;
     private boolean light = false;
     private boolean door = false;
-    private Scanner sc;
 
     public Level3() {
     }
@@ -24,9 +22,13 @@ public class Level3 extends Level1{
             System.out.println("You squint your eyes and try to make out something, anything, in the darkness. Did something just move, or did \n" +
                     "you just imagine it? You trace your hands alongside the walls and floor looking for anything that might help you. In a corner \n" +
                     "you find what you imagine must be a small box.\n");
-        } else {
+        } else if (light && !door) {
             System.out.println("You are standing in a small room, much like the ones before. On the far side of the room you can barely make \n" +
                     "out what appears to be a door drawn onto the stone wall. It has no handle, what appears to be a keyhole is etched into the stone.\n");
+        } else {
+            System.out.println("\"You are standing in a small room, much like the ones before. On the far side of the room you can barely make \n" +
+                    "out what appears to be a door drawn onto the stone wall. The drawn handle has taken solid form, and is protruding from the stone.\n" +
+                    "The door can now be opened.\n");
         }
     }
 
@@ -41,6 +43,8 @@ public class Level3 extends Level1{
             System.out.println("It is a small wooden box.\n");
         } else if (object.equalsIgnoreCase("key") && light && !key) {
             System.out.println("It is a small golden key, with intricate carvings alongside its edge.\n");
+        } else if (object.equalsIgnoreCase("keyhole") && light) {
+            System.out.println("The small keyhole is etched into the stone door.\n");
         } else if (object.equalsIgnoreCase("door") && light) {
             System.out.println("The 'door' is drawn onto the stone wall. It has no handle, what appears to be a keyhole is etched into the stone.\n");
         } else if (checkInv(object, inv)) {

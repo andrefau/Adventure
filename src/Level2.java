@@ -8,7 +8,6 @@ public class Level2 extends Level1 {
 
     private boolean completed = false;
     private boolean door = false;
-    private Scanner sc;
 
     public Level2() {
     }
@@ -98,7 +97,7 @@ public class Level2 extends Level1 {
 
     // Hjelpemetode til pickUp() og use(). Sjekker hva brukeren sier i telefonen.
     private void phone() {
-        sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         String kommando = sc.nextLine();
         if (kommando.equalsIgnoreCase("friend")) {
             System.out.println("You hear a soft 'click' from the door.\n");
