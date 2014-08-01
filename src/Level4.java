@@ -13,5 +13,7 @@ public class Level4 extends Level1{
         return completed;
     }
 
+    public void look() {
 
+    }
 }
