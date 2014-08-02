@@ -34,6 +34,8 @@ public class Level2 extends Level1 {
             System.out.println("The soft light is coming from beneath the door.\n");
         } else if (object.equalsIgnoreCase("telephone") || object.equalsIgnoreCase("phone")) {
             System.out.println("The phone is hanging by a hook on the wall. Its cord disappears between the stones, and it has no dial.\n");
+        } else if (object.equalsIgnoreCase("cord")) {
+            System.out.println("The cord disappears into a crack in the stone wall.\n");
         } else if (checkInv(object, inv)) {
             lookAtInv(object);
         } else {
@@ -46,6 +48,8 @@ public class Level2 extends Level1 {
             System.out.println("You can't just open the floor...\n");
         } else if (object.equalsIgnoreCase("wall") || object.equalsIgnoreCase("walls")) {
             System.out.println("You can't just open the walls...\n");
+        } else if (object.equalsIgnoreCase("cord")) {
+            System.out.println("You lack the tools to open the cord.\n");
         } else if (object.equalsIgnoreCase("door") && !door) {
             System.out.println("The door is locked.\n");
         } else if (object.equalsIgnoreCase("door") && door) {
@@ -70,6 +74,8 @@ public class Level2 extends Level1 {
             System.out.println("You pick up the telephone and hold it against your ear. You think you can hear a soft humming noise coming \n" +
                     "from the other end, but you are not sure. What do you say?\n");
             phone();
+        } else if (object.equalsIgnoreCase("cord")) {
+            System.out.println("You pull at the cord, but it won't give.\n");
         } else {
             System.out.println("You want to pick up what?\n");
         }
@@ -80,6 +86,8 @@ public class Level2 extends Level1 {
             System.out.println("You are already using the floor, by standing on it.\n");
         } else if (object.equalsIgnoreCase("wall") || object.equalsIgnoreCase("walls")) {
             System.out.println("How do you wish to use the walls?\n");
+        } else if (object.equalsIgnoreCase("cord")) {
+            System.out.println("How do you wish to use the cord?\n");
         } else if (object.equalsIgnoreCase("door") && !door) {
             System.out.println("The door is locked.\n");
         } else if (object.equalsIgnoreCase("door") && door) {
