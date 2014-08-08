@@ -4,8 +4,9 @@
 public class Klient {
     public static void main (String[] args) {
         Spill s = new Spill();
-        s.startL1();
-        s.startL2();
-        s.startL3();
+        //s.startL1();
+        //s.startL2();
+        //s.startL3();
+        s.startL4();
     }
 }

@@ -107,7 +107,7 @@ public class Level2 extends Level1 {
     private void phone() {
         Scanner sc = new Scanner(System.in);
         String kommando = sc.nextLine();
-        if (kommando.equalsIgnoreCase("friend")) {
+        if (kommando.equalsIgnoreCase("friend") || kommando.equalsIgnoreCase("mellon")) {
             System.out.println("You hear a soft 'click' from the door.\n");
             door = true;
         } else {

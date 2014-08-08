@@ -119,6 +119,22 @@ public class Spill {
 
             if (kommando.equalsIgnoreCase("help")) {                            // Help kommandoen
                 l4.help();
+            } else if (kommando.equalsIgnoreCase("look")) {                     // Look kommandoen
+                l4.look();
+            } else if (tab.length >= 3 && tab[1].equalsIgnoreCase("at")) {      // Look at kommandoen
+                l4.lookAt(tab[2], inventory);
+            } else if (tab.length >= 2 && tab[0].equalsIgnoreCase("open")) {    // Open kommandoen
+                l4.open(tab[1]);
+            } else if (tab.length >= 3 && tab[0].equalsIgnoreCase("pick")) {    // Pick up kommandoen
+                l4.pickUp(tab[2], inventory);
+            } else if (kommando.equalsIgnoreCase("inventory")) {                // Inventory kommandoen
+                l4.printInv(inventory);
+            } else if (tab.length == 2 && tab[0].equalsIgnoreCase("use")) {     // Use kommandoen
+                l4.use(tab[1]);
+            } else if (tab.length >= 4 && tab[2].equalsIgnoreCase("with")) {    // Use with kommandoen
+                l4.useWith(tab[1], tab[3]);
+            } else {
+                System.out.println("That made no sense, try again.\n");
             }
         }
     }
