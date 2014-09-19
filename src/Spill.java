@@ -138,4 +138,50 @@ public class Spill {
             }
         }
     }
+
+    public void startL5() {
+        Level5 l5 = new Level5();
+        System.out.println("...and with weary legs you descend ever downward. The soft humming noise you heard before returns, stronger now. Is it a song?\n" +
+                "You stop and listen, and think you can pick out the words 'Daisy....Daisy...'\n" +
+                "Familiarity comes crashing in, and you get the feeling that you have been here before. This is not the first time you have descended this staircase,\n" +
+                "nor is it the last. Determined, you continue downwards until you reach a small wooden door. With trembling arms you push it open.\n");
+
+        while (!l5.isCompleted()) {
+            String kommando = sc.nextLine();
+            String[] tab = kommando.split(" ");
+
+            if (kommando.equalsIgnoreCase("help")) {                            // Help kommandoen
+                l5.help();
+            } else if (kommando.equalsIgnoreCase("look")) {                     // Look kommandoen
+                l5.look();
+            } else if (tab.length >= 3 && tab[1].equalsIgnoreCase("at")) {      // Look at kommandoen
+                l5.lookAt(tab[2], inventory);
+            } else if (tab.length >= 2 && tab[0].equalsIgnoreCase("open")) {    // Open kommandoen
+                l5.open(tab[1]);
+            } else if (tab.length >= 3 && tab[0].equalsIgnoreCase("pick")) {    // Pick up kommandoen
+                l5.pickUp(tab[2], inventory);
+            } else if (kommando.equalsIgnoreCase("inventory")) {                // Inventory kommandoen
+                l5.printInv(inventory);
+            } else if (tab.length == 2 && tab[0].equalsIgnoreCase("use")) {     // Use kommandoen
+                l5.use(tab[1]);
+            } else if (tab.length >= 4 && tab[2].equalsIgnoreCase("with")) {    // Use with kommandoen
+                l5.useWith(tab[1], tab[3]);
+            } else {
+                System.out.println("That made no sense, try again.\n");
+            }
+        }
+    }
+
+    public void spill() {
+        int teller = 0;
+        while (teller < 4) {
+            startL1();
+            startL2();
+            startL3();
+            startL4();
+            startL5();
+            teller++;
+        }
+        System.out.println("Congratulations! You actually finished the game! Why would you do this four times? Weirdo.\n");
+    }
 }
