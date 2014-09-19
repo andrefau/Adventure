@@ -1,4 +1,5 @@
 Adventure
 =========
 
-Currently a work in progress. The finished result will be a text-based adventure game written in Java.
+A text-based adventure game written in Java. The game contains five different levels the player must traverse.
+To run the game, download the source files and run "Klient.java".
